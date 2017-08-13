@@ -1,0 +1,179 @@
+获取平台基金列表(分页)：
+request：
+{
+	"request": "getFundshowList" ,
+	"pageSize": "xxx:int" , //页大小
+	"pageNo": "xxx:int"     //当前页号
+}
+response：
+{
+	"fund": [
+				{ 
+					"fundID" : "xxx: int"
+					"name" : "xxx:string" , 
+					"perNetValue": 	"xxx:float" ,  //单位净值
+					"netValueDate": { 	//净值日期
+										"year" : "xxx:int" ,  
+										"month" : "xxx:int" , 
+										"day" : "xxx:int" 
+									},
+					"buildDate" : 	{ 	//创立时间
+										"year" : "xxx:int" , 
+										"month" : "xxx:int" , 
+										"day" : "xxx:int" 
+									},
+					"profitRateOneYear":"xxx:float(%)", //一年收益率
+					"profitRateTotal":	"xxx:float(%)"  //成立以来收益率
+					
+				},
+				
+				........ (n个fund，n为 pageSize )
+			],
+			
+	"totalPages" : "xxx:int"  //总页数
+}
+
+获取基金详情：
+request:
+{
+	"request": "fundDetails" ,
+	"fundID" : "xxx:int"
+}
+response：
+{
+	"netValue": ["xxx:float" ,"xxx:float" ,"xxx:float" ,"xxx:float"], 
+	//季度净值 [最近一个季度，最近的第二个进度, ... ,最近的第四个季度]
+	"date": 	[ // 上述净值的对应期末日期
+					{ 	
+						"year" : "xxx:int" , 
+						"month" : "xxx:int" , 
+						"day" : "xxx:int" 
+					},
+					{ 	
+						"year" : "xxx:int" , 
+						"month" : "xxx:int" , 
+						"day" : "xxx:int" 
+					},
+					{ 	
+						"year" : "xxx:int" , 
+						"month" : "xxx:int" , 
+						"day" : "xxx:int" 
+					},
+					{ 	
+						"year" : "xxx:int" , 
+						"month" : "xxx:int" , 
+						"day" : "xxx:int" 
+					}
+				],
+	
+	"partner":	[ //重仓持股 {公司名，持有比例}
+					{
+						"name" : "xxx:string",
+						"percentage" "xxx:float(%)"
+					},
+					{
+						"name" : "xxx:string",
+						"percentage" "xxx:float(%)"
+					},
+					{
+						"name" : "xxx:string",
+						"percentage" "xxx:float(%)"
+					},
+					{
+						"name" : "xxx:string",
+						"percentage" "xxx:float(%)"
+					}
+				],
+	
+	"raisePercentage": "xxx:float(%)" ， //近三个月涨跌幅
+	"profitRate": ["xxx:float(%)" , xxx:float(%)", xxx:float(%)"] // [近三个月回报率，近六个月，近一年]
+}
+
+获得平台推荐的基金产品
+request:
+{
+	"request": "getRecommmendations",
+	"number": "xxx:int"
+}
+response：{
+	"fund": [
+				{
+					"fundID" : "xxx: int"
+					"name": "sss:string",
+					"profitRateForecast": "xxx:float(%)" //预期回报率
+				},
+				......n个，n为number
+			]
+}
+
+登录
+request：
+{
+	"request": "login",
+	"username": "xxx:string",
+	"password": "xxx:string"
+}
+response：
+{
+	"state": "success" / "failure",
+	"token": "xxx",
+	"userID": "xxx:int"
+}
+
+注册
+request：
+{
+	"request" : "enroll",
+	"username": "xxx:string",
+	"password": "xxx:string"
+}
+responce:
+{
+	state: "success" / "failure"
+}
+
+实名认证
+request：
+{
+	"request" : "identify",
+	"userID" : "xxx:string",
+	"token" : "xxx",
+	"IDNumber" : "xxx:string",
+	"mailAddress" : "String", //邮政地址
+	"bank": "xxx:string", //银行名称
+	"bankNumber": "xxx:int", //银行卡号
+	"phone" : "xxx:string", //预留手机
+	"accountArea" : "xxx：string", //银行开户地点
+	"passwordToTrade": "xxx：string" //交易密码
+}
+response：
+{
+	"state": "success" / "failure"
+}
+获得用户首页
+request:
+{
+	"request": "getUserHome",
+	"userID" : "xxx:int"
+}
+response：
+{
+	"totalproperty" : "xxx:int";
+	"havefunds" : ["fundID": "xxx:int", "fundID": "xxx:int", "fundID": "xxx:int", ....]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
