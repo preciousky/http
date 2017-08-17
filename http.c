@@ -90,7 +90,7 @@ request：
 {
     "request": "login",
     "username": "xxx:string",
-    "password": "xxx:string"
+    "password": "xxx:string",
 }
 response：
 {
@@ -144,9 +144,17 @@ response：
     "haveFunds" : ["fundID": "xxx:int", "fundID": "xxx:int", "fundID": "xxx:int", ....]
 }
 
+8.刷新页面(session机制)
+api/refresh
 
-
-
+response：
+{
+	"state": "success" / "failure",
+	
+	(如果 "success")
+	"userID" : "xxx:int",
+	"username" : "xxx:string"
+}
 
 
 
